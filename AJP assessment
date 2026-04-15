@@ -1,0 +1,24 @@
+import java.beans.Statement;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.util.*;
+public class lamda{
+    public static void main(String[] args) {
+   String driver_name = "com.mysql.cj.jdbc.Driver";
+   String host = "jdbc:mysql://localhost:3360/employeedb";
+   String username = "root";
+   String pwd = "";
+   try {
+    Class.forName(driver_name);
+    Connection con = DriverManager.getConnection(host,username,pwd); 
+    CallableStatement cst = con.prepareCall("{call getEmp()}");
+    ResultSet rs = cst.executeQuery();
+   } catch (Exception e) {
+    // TODO: handle exception
+    e.printStackTrace();
+   }
+     
+    }
+}
